@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion with Animation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .accordion-item {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion-content {
+      padding: 10px;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      display: none;
+      transition: max-height 0.3s ease-out;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .accordion-item.open .accordion-content {
+      display: block;
+      max-height: 200px; /* Set an appropriate value */
+    }
+
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-icon {
+      font-size: 18px;
+      transition: transform 0.3s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <div class="accordion-header">
+    <span class="accordion-icon">+</span>
+    Section 1
+  </div>
+  <div class="accordion-content">
+    Content for Section 1
+  </div>
+</div>
+
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <div class="accordion-header">
+    <span class="accordion-icon">+</span>
+    Section 2
+  </div>
+  <div class="accordion-content">
+    Content for Section 2
+  </div>
+</div>
+
+<script>
+  function toggleAccordion(accordionItem) {
+    accordionItem.classList.toggle('open');
+    const content = accordionItem.querySelector('.accordion-content');
+    const icon = accordionItem.querySelector('.accordion-icon');
+
+    if (accordionItem.classList.contains('open')) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      icon.textContent = '-';
+    } else {
+      content.style.maxHeight = '0';
+      icon.textContent = '+';
+    }
+  }
+</script>
+
+</body>
+</html>
